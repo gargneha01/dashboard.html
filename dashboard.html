@@ -40,27 +40,112 @@
       <header class="flex items-center justify-between bg-white shadow-md p-4">
         <h1 class="text-xl text-blue-800 font-semibold">Admin Dashboard</h1>
         <button id="openSidebar" class="md:hidden text-gray-700 focus:outline-none">
-          <span class="text-2xl">&#8942;</span>
+          <span class="text-2xl">&#8801;</span>
         </button>
       </header>
-      <main class="p-4">
-        <h2 class="text-lg font-semibold">Welcome</h2>
-        <p class="mt-2 text-gray-600">Hello Everyone</p>
-      </main>
+      <div class="flex flex-row gap-16 mt-5 ml-20 justify-items-center">
+        <div class="bg-white p-8 rounded-2xl w-full max-w-96 font-bold text-black">
+  <button id="toggleTeacher" class="w-full text-left">Teacher</button>
+  
+  <div id="teacherSection" class="mt-4 hidden">
+    <ul id="teacherList" class="text-sm font-normal mb-4 space-y-1">
+      <li>MEENA</li>
+      <li>SANTOSH</li>
+      <li>ANJU</li>
+    </ul>
+    
+    <form id="addTeacherForm" class="space-y-2">
+      <input type="text" id="teacherName" placeholder="Enter teacher name" class="w-full px-3 py-1 border rounded" />
+      <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+        Add Teacher
+      </button>
+    </form>
+  </div>
+</div>
+        <div class="bg-white p-8 rounded-2xl w-full max-w-96 font-bold text-black">
+  <button id="toggleStudent" class="w-full text-left">Student</button>
+  
+  <div id="studentSection" class="mt-4 hidden">
+    <ul id="studentList" class="text-sm font-normal mb-4 space-y-1">
+      <li>NEHA</li>
+      <li>ANCHAL</li>
+      <li>NISHA</li>
+    </ul>
+    
+    <form id="addStudentForm" class="space-y-2">
+      <input type="text" id="studentName" placeholder="Enter student name" class="w-full px-3 py-1 border rounded" />
+      <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
+        Add Student
+      </button>
+    </form>
+  </div>
+</div>
+
+      </div>
     </div>
   </div>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const sidebar = document.getElementById('sidebar');
-      const openBtn = document.getElementById('openSidebar');
-      const closeBtn = document.getElementById('closeSidebar');
-      openBtn.addEventListener('click', () => {
-        sidebar.classList.remove('-translate-x-full');
-      });
-      closeBtn.addEventListener('click', () => {
-        sidebar.classList.add('-translate-x-full');
-      });
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const openBtn = document.getElementById('openSidebar');
+    const closeBtn = document.getElementById('closeSidebar');
+
+    openBtn.addEventListener('click', () => {
+      sidebar.classList.remove('-translate-x-full');
     });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.add('-translate-x-full');
+    });
+    const toggleTeacherBtn = document.getElementById('toggleTeacher');
+    const teacherSection = document.getElementById('teacherSection');
+    const studentSection = document.getElementById('studentSection');
+
+    toggleTeacherBtn.addEventListener('click', () => {
+      const isHidden = teacherSection.classList.contains('hidden');
+      teacherSection.classList.toggle('hidden');
+      if (!isHidden) return;
+      studentSection.classList.add('hidden');
+    });
+    const toggleStudentBtn = document.getElementById('toggleStudent');
+
+    toggleStudentBtn.addEventListener('click', () => {
+      const isHidden = studentSection.classList.contains('hidden');
+      studentSection.classList.toggle('hidden');
+      if (!isHidden) return;
+      teacherSection.classList.add('hidden');
+    });
+    const teacherForm = document.getElementById('addTeacherForm');
+    const teacherInput = document.getElementById('teacherName');
+    const teacherList = document.getElementById('teacherList');
+
+    teacherForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = teacherInput.value.trim();
+      if (name !== '') {
+        const li = document.createElement('li');
+        li.textContent = name;
+        teacherList.appendChild(li);
+        teacherInput.value = '';
+      }
+    });
+
+    // Add Student functionality
+    const studentForm = document.getElementById('addStudentForm');
+    const studentInput = document.getElementById('studentName');
+    const studentList = document.getElementById('studentList');
+
+    studentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = studentInput.value.trim();
+      if (name !== '') {
+        const li = document.createElement('li');
+        li.textContent = name;
+        studentList.appendChild(li);
+        studentInput.value = '';
+      }
+    });
+  });
   </script>
 </body>
 </html>
