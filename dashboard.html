@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 antialiased">
   <div class="flex h-screen">
-    <!-- Sidebar -->
+    
     <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-slate-500 shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50">
       <button id="closeSidebar" class="md:hidden absolute top-4 right-4 text-white text-2xl">&times;</button>
       <div class="p-6">
@@ -17,7 +17,7 @@
           <ul>
             <li class="mb-4">
               <a href="#" class="flex items-center gap-2 text-white hover:text-blue-500">
-                <!-- Dashboard SVG -->
+                
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4V3H3v7zm7 11h4v-8h-4v8zm7-18v18h4V3h-4z" />
                 </svg>
@@ -26,7 +26,7 @@
             </li>
             <li class="mb-4">
               <a href="#" class="flex items-center gap-2 text-white hover:text-blue-500">
-                <!-- Profile SVG -->
+              
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9.004 9.004 0 0112 15a9.004 9.004 0 016.879 2.804M15 11a3 3 0 10-6 0 3 3 0 006 0z" />
                 </svg>
@@ -35,7 +35,7 @@
             </li>
             <li class="mb-4">
               <a href="#" class="flex items-center gap-2 text-white hover:text-blue-500">
-                <!-- Settings SVG -->
+                
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -47,23 +47,23 @@
       </div>
     </aside>
 
-    <!-- Main Content -->
+    
     <div class="flex-1 flex flex-col md:ml-64">
-      <!-- Header -->
+      
       <header class="relative bg-white shadow-md p-4 flex items-center justify-center">
-        <!-- Date in top-left -->
+    
         <div class="absolute left-4 top-4 text-gray-700 text-sm font-semibold" id="show">--</div>
 
-        <!-- Centered title -->
+    
         <h1 class="text-xl text-blue-800 font-semibold">Admin Dashboard</h1>
 
-        <!-- Hamburger menu in top-right -->
+    
         <button id="openSidebar" class="absolute right-4 top-4 md:hidden text-gray-700 focus:outline-none text-2xl">
           &#9776;
         </button>
       </header>
 
-      <!-- Buttons -->
+      
       <div class="flex flex-row gap-16 mt-5 ml-20 justify-items-center">
         <div class="bg-white p-8 rounded-2xl w-full max-w-96 font-bold text-black">
           <button onclick="showTeacher()" class="w-full text-center">Teacher</button>
@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <!-- Teacher Menu -->
+      
 <div id="teacherMenu" class="flex gap-16 relative justify-center flex-wrap mt-4 ml-16" style="display: none;">
   <div class="bg-white p-8 rounded-2xl w-full max-w-96 font-bold text-black">
     <button class="w-full text-center">Add Teacher</button>
@@ -83,24 +83,75 @@
   </div>
 </div>
 
-<!-- Student Menu -->
+
 <div id="studentMenu" class="flex gap-16 relative justify-center flex-wrap mt-4 ml-20" style="display: none;">
   <div class="bg-white p-8 rounded-2xl w-full max-w-96 font-bold text-black">
-    <button class="w-full text-center">Add Student</button>
+    <button onclick="showstudentAdd()"   class="w-full text-center">Add Student</button>
   </div>
   <div class="bg-white p-8 rounded-2xl w-full max-w-96 font-bold text-black">
-    <button class="w-full text-center">Student List</button>
+    <button onclick="showstudentList()" class="w-full text-center">Student List</button>
   </div>
 </div>
+<div id="studentAdd" class="bg-white p-8 rounded-2xl mt-4 w-full max-w-lg text-black flex flex-wrap" style="display: none;">
+  <h2 class="text-xl font-bold mb-4 text-center">Student Details:-</h2>
+  <form id="studentForm" class="space-y-4">
+    <br>
+    <div>
+      <label for="fullName" class="block font-medium mb-1">Full Name</label>
+      <input type="text" id="fullName" name="fullName" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
 
+    <div>
+      <label for="email" class="block font-medium mb-1">Email</label>
+      <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
 
-  <!-- JavaScript -->
+    <div>
+      <label for="studentClass" class="block font-medium mb-1">Class</label>
+      <input type="text" id="studentClass" name="studentClass" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+
+    <div>
+      <label for="dob" class="block font-medium mb-1">Date of Birth</label>
+      <input type="date" id="dob" name="dob" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+
+    <div>
+      <label for="doj" class="block font-medium mb-1">Date of Joining</label>
+      <input type="date" id="doj" name="doj" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+
+    <button id="submitBtn" type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Submit</button>
+  </form>
+</div>
+
+<div id ="studentList"class="bg-white mt-10 p-8 rounded-2xl w-full max-w-4xl text-black flex flex-wrap" style="display: none;">
+  <h2 class="text-xl font-bold mb-4 text-center">Student List:-</h2>
+  <table class="w-full table-auto border-collapse">
+    <thead>
+      <tr class="bg-blue-200 text-left">
+        <th class="p-2 border">Full Name</th>
+        <th class="p-2 border">Email</th>
+        <th class="p-2 border">Class</th>
+        <th class="p-2 border">Date of Birth</th>
+        <th class="p-2 border">Date of Joining</th>
+      </tr>
+    </thead>
+    <tbody id="studentTableBody" class="text-sm">
+    
+    </tbody>
+  </table>
+</div>
+
+  <script src="./form.js"></script>
   <script>
     const openSidebar = document.getElementById('openSidebar');
     const closeSidebar = document.getElementById('closeSidebar');
     const sidebar = document.getElementById('sidebar');
     const teacherMenu = document.getElementById('teacherMenu');
     const studentMenu = document.getElementById('studentMenu');
+    const studentAdd = document.getElementById('studentAdd');
+    const studentList = document.getElementById('studentList');
 
     openSidebar.addEventListener('click', () => {
       sidebar.classList.remove('-translate-x-full');
@@ -110,7 +161,7 @@
       sidebar.classList.add('-translate-x-full');
     });
 
-    // Show current date
+    
     setInterval(() => {
       const now = new Date();
       document.getElementById('show').innerHTML = now.toDateString();
@@ -124,6 +175,14 @@
 function showStudent() {
   studentMenu.style.display = 'flex';
   teacherMenu.style.display = 'none';
+}
+function showstudentAdd() {
+  studentAdd.style.display = 'flex';
+  studentList.style.display = 'none';
+}
+function showstudentList() {
+  studentList.style.display = 'flex';
+  studentAdd.style.display = 'none';
 }
 
   </script>
